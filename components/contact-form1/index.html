@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Modern Contact Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"  href="assets/css/style.css">
+</head>
+<body>
+    <div class="decoration circle"></div>
+    <div class="decoration triangle"></div>
+    <div class="decoration square"></div>
+    
+    <div class="container">
+        <div class="form-section">
+            <div class="form-header">
+                <h1>Connect With Us</h1>
+                <p>Have a project in mind or want to learn more about our services? We'd love to hear from you.</p>
+            </div>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder=" ">
+                    <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                    <div class="error-message">Please enter your name</div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder=" ">
+                    <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                    <div class="error-message">Please enter a valid email</div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" placeholder=" ">
+                    <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                    <div class="error-message">Please enter a valid phone number</div>
+                </div>
+                
+                <div class="form-group">
+                    <select id="subject" name="subject">
+                        <option value="" disabled selected></option>
+                        <option value="general">General Inquiry</option>
+                        <option value="support">Technical Support</option>
+                        <option value="collaboration">Business Collaboration</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="quote">Request a Quote</option>
+                    </select>
+                    <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+                    <div class="error-message">Please select a subject</div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <textarea id="message" name="message" placeholder=" "></textarea>
+                    <label for="message"><i class="fas fa-comment"></i> Your Message</label>
+                    <div class="error-message">Please enter your message</div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="info-section">
+            <div class="contact-info">
+                <div class="info-item">
+                    <div class="icon-container">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Our Location</h3>
+                        <p>123 Innovation Blvd, Suite 450</p>
+                        <p>Tech City, TC 10001</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="icon-container">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Call Us</h3>
+                        <p>+1 (555) 123-4567</p>
+                        <p>+1 (555) 987-6543</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="icon-container">
+                        <i class="fas fa-envelope-open"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Email Us</h3>
+                        <p><a href="mailto:info@company.com">info@company.com</a></p>
+                        <p><a href="mailto:support@company.com">support@company.com</a></p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="icon-container">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Business Hours</h3>
+                        <p>Mon-Fri: 9AM - 6PM</p>
+                        <p>Sat-Sun: Closed</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+            </div>
+        </div>
+        
+        <footer>
+            <p><i class="fas fa-heart"></i> &copy; 2025 CodeWithDivine. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script type="text/javascript" src="assets/js/script.js"></script>
+</body>
+</html>

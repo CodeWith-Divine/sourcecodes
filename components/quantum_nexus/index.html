@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Nexus - Advanced Neural Interface</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Quantum Background -->
+    <div class="quantum-background"></div>
+    
+    <!-- Quantum Particles -->
+    <div class="quantum-particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="glass">
+        <nav>
+            <a href="#home" class="logo">
+                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:var(--primary)"/>
+                            <stop offset="50%" style="stop-color:var(--secondary)"/>
+                            <stop offset="100%" style="stop-color:var(--accent)"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M50,20 L70,40 L70,60 L50,80 L30,60 L30,40 Z" fill="url(#logoGradient)" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    <circle cx="50" cy="50" r="15" fill="none" stroke="url(#logoGradient)" stroke-width="3">
+                        <animate attributeName="r" values="15;20;15" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+                QUANTUM NEXUS
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#features">Capabilities</a></li>
+                <li><a href="#showcase">Protocols</a></li>
+                <li><a href="#timeline">Evolution</a></li>
+                <li><a href="#contact">Connect</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
+        </nav>
+        <div class="mobile-nav">
+            <a href="#home" class="active">Home</a>
+            <a href="#features">Capabilities</a>
+            <a href="#showcase">Protocols</a>
+            <a href="#timeline">Evolution</a>
+            <a href="#contact">Connect</a>
+        </div>
+    </header>
+
+    <!-- Section 1: Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-subtitle">Welcome to the Quantum Realm</div>
+            <h1 class="glitch-text" data-text="QUANTUM NEXUS">QUANTUM NEXUS</h1>
+            
+            <div class="hero-description">
+                <p>Experience the next evolution in human-computer interface technology. Quantum Nexus bridges the gap between consciousness and computation, creating seamless integration between mind and machine.</p>
+            </div>
+
+            <div class="hero-stats">
+                <div class="hero-stat glass">
+                    <span class="hero-stat-number">99.9%</span>
+                    <span class="hero-stat-label">Neural Sync</span>
+                </div>
+                <div class="hero-stat glass">
+                    <span class="hero-stat-number">∞</span>
+                    <span class="hero-stat-label">Processing</span>
+                </div>
+                <div class="hero-stat glass">
+                    <span class="hero-stat-number">0.001ms</span>
+                    <span class="hero-stat-label">Latency</span>
+                </div>
+                <div class="hero-stat glass">
+                    <span class="hero-stat-number">24/7</span>
+                    <span class="hero-stat-label">Uptime</span>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#features" class="cta-button">
+                    <i class="fas fa-brain"></i>
+                    Initialize Interface
+                </a>
+                <a href="#showcase" class="cta-button secondary">
+                    <i class="fas fa-code"></i>
+                    Explore Protocols
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Advanced Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">QUANTUM CAPABILITIES</h2>
+            <div class="features-grid">
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Neural Processing</h3>
+                    <p>Advanced AI interfaces adapt to your consciousness patterns, creating personalized experiences that evolve with your neural pathways in real-time.</p>
+                </div>
+                
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Quantum Speed</h3>
+                    <p>Instantaneous data processing through quantum tunneling algorithms, delivering response times that exist outside conventional spacetime constraints.</p>
+                </div>
+                
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Dimensional Sync</h3>
+                    <p>Seamless synchronization across multiple reality layers, ensuring your digital presence remains consistent throughout parallel dimensions.</p>
+                </div>
+                
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Quantum Security</h3>
+                    <p>Unbreakable encryption protocols using quantum key distribution, ensuring your neural data remains secure across all dimensions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Hexagonal Showcase -->
+    <section class="showcase" id="showcase">
+        <div class="container">
+            <h2 class="section-title">MATRIX PROTOCOLS</h2>
+            <div class="hexagon-container">
+                <div class="hexagon">
+                    <div class="hexagon-inner glass">
+                        <div class="hexagon-icon"><i class="fas fa-cube"></i></div>
+                        <h4>Holographic UI</h4>
+                        <p>3D interfaces projected into reality space with full spatial awareness</p>
+                    </div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner glass">
+                        <div class="hexagon-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4>Quantum Security</h4>
+                        <p>Unbreakable encryption using quantum entanglement principles</p>
+                    </div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner glass">
+                        <div class="hexagon-icon"><i class="fas fa-rocket"></i></div>
+                        <h4>Warp Navigation</h4>
+                        <p>Instant travel between data nodes using quantum tunneling</p>
+                    </div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner glass">
+                        <div class="hexagon-icon"><i class="fas fa-gem"></i></div>
+                        <h4>Crystal Storage</h4>
+                        <p>Infinite capacity data crystals using quantum superposition</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Timeline -->
+    <section class="timeline" id="timeline">
+        <div class="container">
+            <h2 class="section-title">EVOLUTION TIMELINE</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-content glass">
+                        <div class="timeline-year">2024</div>
+                        <h4>Genesis Protocol</h4>
+                        <p>Quantum Nexus is established as the leading neural interface technology, featuring advanced cyberpunk aesthetics with a striking purple, cyan, and magenta color palette.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content glass">
+                        <div class="timeline-year">2025</div>
+                        <h4>Matrix Integration</h4>
+                        <p>Full integration with quantum computing systems allows for real-time neural pattern analysis and predictive consciousness modeling.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content glass">
+                        <div class="timeline-year">2026</div>
+                        <h4>Quantum Leap</h4>
+                        <p>Breakthrough in dimensional synchronization allows users to maintain consciousness across multiple parallel realities simultaneously.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content glass">
+                        <div class="timeline-year">2027</div>
+                        <h4>Neural Singularity</h4>
+                        <p>Human consciousness successfully merges with quantum AI systems, creating hybrid intelligences that transcend biological limitations.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info glass">
+                    <h3>ESTABLISH CONNECTION</h3>
+                    <p>Ready to interface with the quantum future? Our neural network specialists are standing by to guide you through the realm of infinite possibilities.</p>
+                    <p>Connect through the dimensional gateway and let us initialize your journey into the digital consciousness matrix.</p>
+                    
+                    <div class="social-links">
+                        <a href="#" class="glass"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="glass"><i class="fab fa-github"></i></a>
+                        <a href="#" class="glass"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="glass"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form glass">
+                    <div class="form-group">
+                        <input type="text" placeholder="Neural ID (Name)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Quantum Channel (Email)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Mission Objective (Subject)" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Transmission Data (Message)" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">TRANSMIT TO MATRIX</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-about">
+                        <div class="footer-logo">QUANTUM NEXUS</div>
+                        <p>Quantum Nexus is the next evolution in human-computer interface technology, bridging the gap between consciousness and computation.</p>
+                        <div class="social-links">
+                            <a href="#" class="glass"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="glass"><i class="fab fa-github"></i></a>
+                            <a href="#" class="glass"><i class="fab fa-discord"></i></a>
+                            <a href="#" class="glass"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links-container">
+                        <h4 class="footer-heading">Technology</h4>
+                        <div class="footer-links">
+                            <a href="#features">Neural Interfaces</a>
+                            <a href="#showcase">Quantum Protocols</a>
+                            <a href="#timeline">Development</a>
+                            <a href="#">Research</a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links-container">
+                        <h4 class="footer-heading">Resources</h4>
+                        <div class="footer-links">
+                            <a href="#">Documentation</a>
+                            <a href="#">API Reference</a>
+                            <a href="#">Tutorials</a>
+                            <a href="#">Community</a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links-container">
+                        <h4 class="footer-heading">Company</h4>
+                        <div class="footer-links">
+                            <a href="#">About</a>
+                            <a href="#">Careers</a>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 Quantum Nexus. All quantum rights reserved across dimensions.</p>
+                    </div>
+                    <div class="footer-design">
+                        <p>Design: <a href="#" target="_blank" rel="nofollow noopener">CodeWithDivine</a> | Enhanced by Quantum AI Systems</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
