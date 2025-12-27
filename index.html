@@ -3,2540 +3,620 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code with Divine | Premium Frontend Projects</title>
+    <title>CodeWithDivine | Component Library</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #8b5cf6;
-            --accent: #ec4899;
-            --accent-glow: rgba(236, 72, 153, 0.4);
-            --dark: #0f172a;
-            --darker: #020617;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --gray-dark: #334155;
-            --success: #10b981;
-            --code-bg: #1e293b;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --transition-fast: all 0.2s ease;
-            --border-radius: 16px;
-            --border-radius-lg: 24px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--darker);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 20%),
-                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 30%);
-            min-height: 100vh;
-        }
-
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s, width 0.3s, height 0.3s, background-color 0.3s;
-            mix-blend-mode: difference;
-        }
-
-        .cursor.hover {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(236, 72, 153, 0.2);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header & Navigation */
-        header {
-            padding: 2rem 0;
-            position: relative;
-            z-index: 100;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-            color: white;
-        }
-
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(30deg);
-            animation: shine 3s infinite linear;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-main {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #fff, var(--primary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .logo-sub {
-            font-size: 0.9rem;
-            color: var(--gray);
-            font-weight: 500;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: var(--transition-fast);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link:hover {
-            color: white;
-        }
-
-        .nav-cta {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 6rem 0 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: linear-gradient(90deg, var(--primary-dark), var(--secondary));
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .hero-badge::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: badgeShine 3s infinite;
-        }
-
-        @keyframes badgeShine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #fff, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-        }
-
-        .hero-title::after {
-            content: '</>';
-            position: absolute;
-            right: -50px;
-            top: -20px;
-            font-size: 3rem;
-            color: rgba(255, 255, 255, 0.1);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-        }
-
-        .tech-pills {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 4rem;
-        }
-
-        .tech-pill {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-        }
-
-        .tech-pill:hover {
-            transform: translateY(-5px);
-            background: rgba(99, 102, 241, 0.2);
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
-        }
-
-        .tech-pill i {
-            color: var(--primary);
-        }
-
-        .lemon-highlight {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(236, 72, 153, 0.15);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-
-        .lemon-highlight i {
-            color: var(--accent);
-        }
-
-        /* Products Grid - UPDATED for 3 cards per row */
-        .products-section {
-            padding: 4rem 0;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #fff, var(--primary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            color: var(--gray);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 6rem;
-        }
-
-        /* UPDATED: 3 cards per row on large screens */
-        @media (min-width: 1200px) {
-            .products-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .product-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            transition: var(--transition);
-            position: relative;
-            box-shadow: var(--glass-shadow);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.05));
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .product-card:hover::before {
-            opacity: 1;
-        }
-
-        .product-card:hover {
-            transform: translateY(-15px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 60px rgba(99, 102, 241, 0.1);
-        }
-
-        .product-header {
-            padding: 1.5rem 1.5rem 0.5rem;
-            position: relative;
-            flex: 0 0 auto;
-        }
-
-        .product-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .product-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-
-        .product-description {
-            color: var(--gray);
-            margin-bottom: 1rem;
-            line-height: 1.5;
-            font-size: 0.95rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            min-height: 4.5em;
-        }
-
-        .product-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-
-        .product-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(15, 23, 42, 0.8) 100%);
-        }
-
-        .product-action {
-            padding: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: auto;
-            flex: 0 0 auto;
-        }
-
-        .pricing-model {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 1.2rem;
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .pricing-model i {
-            font-size: 1.2rem;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .details-btn, .lemon-btn {
-            flex: 1;
-            background: linear-gradient(90deg, var(--primary-dark), var(--secondary));
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .details-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .details-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-
-        .lemon-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(30deg);
-            transition: transform 0.6s;
-        }
-
-        .lemon-btn:hover::after {
-            transform: translateX(100%) translateY(100%) rotate(30deg);
-        }
-
-        .lemon-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
-        }
-
-        .security-note {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            font-size: 0.8rem;
-            color: var(--gray);
-            text-align: center;
-            line-height: 1.4;
-        }
-
-        .security-note i {
-            color: var(--primary);
-            font-size: 1rem;
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .feature-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .feature-description {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* Testimonials Section */
-        .testimonials-section {
-            padding: 6rem 0;
-            position: relative;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .testimonial-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .testimonial-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .testimonial-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--light);
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .testimonial-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        .testimonial-info h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
-
-        .testimonial-info p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .testimonial-rating {
-            display: flex;
-            gap: 0.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-rating i {
-            color: var(--accent);
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 4rem auto 0;
-        }
-
-        .faq-item {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            border-radius: var(--border-radius);
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .faq-item:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-        }
-
-        .faq-question {
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .faq-question:hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .faq-question h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--light);
-            margin-right: 2rem;
-        }
-
-        .faq-icon {
-            color: var(--accent);
-            font-size: 1.2rem;
-            transition: var(--transition);
-            min-width: 20px;
-        }
-
-        .faq-answer {
-            padding: 0 2rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, padding 0.5s ease;
-        }
-
-        .faq-answer.active {
-            padding: 0 2rem 1.5rem 2rem;
-            max-height: 500px;
-        }
-
-        .faq-answer p {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        /* Contact & Support Section */
-        .contact-section {
-            padding: 6rem 0;
-            position: relative;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .contact-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .contact-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .contact-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-        }
-
-        .contact-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .contact-details {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .contact-email {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--accent);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-top: 1rem;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .contact-email:hover {
-            background: rgba(99, 102, 241, 0.2);
-            transform: translateY(-3px);
-        }
-
-        .response-time {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-        }
-
-        /* Delivery & Refund Section */
-        .delivery-section {
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        .delivery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .delivery-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
-            transition: var(--transition);
-        }
-
-        .delivery-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .delivery-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .delivery-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .delivery-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .delivery-content {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .delivery-note {
-            background: rgba(236, 72, 153, 0.1);
-            border-left: 4px solid var(--accent);
-            padding: 1rem 1.5rem;
-            margin-top: 1.5rem;
-            border-radius: 0 8px 8px 0;
-        }
-
-        /* Product Detail Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(2, 6, 23, 0.95);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .product-modal {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(20px);
-            border-radius: var(--border-radius-lg);
-            width: 100%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            transform: translateY(30px) scale(0.95);
-            transition: var(--transition);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .modal-overlay.active .product-modal {
-            transform: translateY(0) scale(1);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-        }
-
-        .modal-close:hover {
-            background: rgba(236, 72, 153, 0.3);
-            transform: rotate(90deg);
-        }
-
-        .modal-header {
-            padding: 3rem 3rem 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-        }
-
-        .modal-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #fff, var(--primary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .modal-subtitle {
-            color: var(--gray);
-            font-size: 1.1rem;
-            max-width: 600px;
-            line-height: 1.7;
-        }
-
-        .modal-content {
-            padding: 2rem 3rem;
-        }
-
-        .modal-section {
-            margin-bottom: 2.5rem;
-        }
-
-        .modal-section h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .modal-section h3 i {
-            color: var(--accent);
-        }
-
-        .modal-section p {
-            color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .modal-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .modal-feature {
-            background: rgba(30, 41, 59, 0.5);
-            padding: 1.2rem;
-            border-radius: 10px;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-        }
-
-        .modal-feature i {
-            color: var(--success);
-            font-size: 1.2rem;
-            margin-top: 0.2rem;
-        }
-
-        .modal-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.7rem;
-            margin-top: 1rem;
-        }
-
-        .youtube-note {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-            border-left: 4px solid var(--accent);
-            padding: 1.5rem;
-            border-radius: 0 10px 10px 0;
-            margin-top: 2rem;
-        }
-
-        .youtube-note p {
-            color: var(--light);
-            font-style: italic;
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        .modal-action {
-            padding: 2rem 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
-        }
-
-        .modal-action .btn-group {
-            margin-bottom: 1.5rem;
-        }
-
-        /* Code Preview */
-        .code-preview {
-            background: var(--code-bg);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            margin: 4rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .code-header {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .code-dots {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .code-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .code-dot.red { background: #ff5f56; }
-        .code-dot.yellow { background: #ffbd2e; }
-        .code-dot.green { background: #27c93f; }
-
-        .code-title {
-            margin-left: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        .code-content {
-            padding: 2rem;
-            overflow-x: auto;
-        }
-
-        .code-content pre {
-            margin: 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .code-line {
-            display: flex;
-            margin-bottom: 0.3rem;
-        }
-
-        .line-number {
-            color: var(--gray);
-            min-width: 40px;
-            text-align: right;
-            padding-right: 1rem;
-            user-select: none;
-        }
-
-        .line-content {
-            flex-grow: 1;
-        }
-
-        .keyword { color: #ff79c6; }
-        .function { color: #50fa7b; }
-        .string { color: #f1fa8c; }
-        .comment { color: #6272a4; }
-        .variable { color: #8be9fd; }
-        .operator { color: #ff79c6; }
-
-        /* Lemon Squeeze Integration Info */
-        .lemon-integration {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-            border-radius: var(--border-radius-lg);
-            padding: 3rem;
-            margin: 4rem 0;
-            text-align: center;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .lemon-integration h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .lemon-integration p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
-        }
-
-        .lemon-features {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .lemon-feature {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-        }
-
-        .lemon-feature i {
-            color: var(--accent);
-            font-size: 1.5rem;
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 0 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-weight: 700;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: var(--transition-fast);
-        }
-
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-link {
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            transform: translateY(-5px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .floating {
-            animation: float 5s ease-in-out infinite;
-        }
-
-        /* Particle Background */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0.2;
-            animation: float 20s infinite linear;
-        }
-
-        .particle:nth-child(1) {
-            width: 20px;
-            height: 20px;
-            top: 20%;
-            left: 10%;
-            animation-duration: 25s;
-            background: var(--accent);
-        }
-
-        .particle:nth-child(2) {
-            width: 30px;
-            height: 30px;
-            top: 60%;
-            left: 80%;
-            animation-duration: 30s;
-            background: var(--secondary);
-        }
-
-        .particle:nth-child(3) {
-            width: 15px;
-            height: 15px;
-            top: 40%;
-            left: 90%;
-            animation-duration: 20s;
-            background: var(--primary);
-        }
-
-        .particle:nth-child(4) {
-            width: 25px;
-            height: 25px;
-            top: 80%;
-            left: 20%;
-            animation-duration: 35s;
-            background: var(--accent);
-        }
-
-        /* Adjust button sizes for large screens */
-        @media (min-width: 1024px) {
-            .details-btn, .lemon-btn {
-                padding: 0.8rem;
-                font-size: 0.9rem;
-            }
-            
-            .product-description {
-                font-size: 0.9rem;
-                -webkit-line-clamp: 2;
-                min-height: 3em;
-            }
-            
-            .pricing-model {
-                margin-bottom: 1rem;
-            }
-            
-            .product-icon {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
-            }
-            
-            .product-title {
-                font-size: 1.4rem;
-            }
-            
-            .btn-group {
-                gap: 0.8rem;
-            }
-        }
-
-        /* For very large screens */
-        @media (min-width: 1400px) {
-            .details-btn, .lemon-btn {
-                padding: 0.7rem;
-                font-size: 0.85rem;
-            }
-            
-            /* UPDATED: Keep 3 cards per row on very large screens */
-            .products-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1.8rem;
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 3.2rem;
-            }
-            
-            .modal-content, .modal-header, .modal-action {
-                padding: 2rem;
-            }
-            
-            .modal-features {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-            
-            .hero-title {
-                font-size: 2.8rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .features-grid, .testimonials-grid, .contact-grid, .delivery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .lemon-features {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .faq-question h3 {
-                font-size: 1.1rem;
-            }
-            
-            .btn-group {
-                flex-direction: column;
-            }
-            
-            .modal-overlay {
-                padding: 1rem;
-            }
-            
-            .product-modal {
-                max-height: 95vh;
-            }
-            
-            /* Keep original button size on mobile */
-            .details-btn, .lemon-btn {
-                padding: 1rem;
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .tech-pill {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .lemon-integration {
-                padding: 2rem 1.5rem;
-            }
-            
-            .lemon-integration h2 {
-                font-size: 2rem;
-            }
-            
-            .testimonial-card, .faq-item, .contact-card, .delivery-card {
-                padding: 1.5rem;
-            }
-            
-            .faq-question {
-                padding: 1rem 1.5rem;
-            }
-            
-            .faq-answer.active {
-                padding: 0 1.5rem 1rem 1.5rem;
-            }
-            
-            .modal-title {
-                font-size: 2rem;
-            }
-            
-            .modal-header, .modal-content, .modal-action {
-                padding: 1.5rem;
-            }
-            
-            .product-description {
-                -webkit-line-clamp: 3;
-                min-height: 4.5em;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-
-    <!-- Particle Background -->
-    <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="nav-container">
-                <a href="#" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-code"></i>
+    <!-- Authentication Section -->
+    <section class="auth-container" id="authSection">
+        <div class="auth-card glass">
+            <div class="auth-logo">
+                <i class="fas fa-code"></i>
+                <h1>CodeWithDivine</h1>
+            </div>
+            
+            <div class="auth-header">
+                <h2>Component Library Access</h2>
+                <p>Enter your password to access premium components</p>
+            </div>
+            
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password" id="togglePassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
                     </div>
-                    <div class="logo-text">
-                        <div class="logo-main">Code with Divine</div>
-                        <div class="logo-sub">Frontend Projects</div>
-                    </div>
-                </a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="loginBtn">
+                    <i class="fas fa-lock"></i> Unlock Library
+                </button>
+                
+                <div class="error-message" id="errorMessage">
+                    <i class="fas fa-exclamation-circle"></i> Incorrect password. Please try again.
+                </div>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Need help? <a href="mailto:codewithdivine@gmail.com" style="color: var(--primary);">Contact support</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content - Initially Hidden -->
+    <div class="main-content" id="mainContent">
+        <!-- Admin badge (only shown to admin) -->
+        <div class="admin-badge" id="adminBadge">
+            <i class="fas fa-crown"></i> Admin Mode
+        </div>
+        
+        <!-- Header -->
+        <header class="header">
+            <div class="container header-content">
+                <div class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>CodeWithDivine</span>
+                </div>
+                
                 <div class="nav-links">
-                    <a href="#projects" class="nav-link">Projects</a>
-                    <a href="#features" class="nav-link">Features</a>
-                    <a href="#testimonials" class="nav-link">Testimonials</a>
-                    <a href="#faq" class="nav-link">FAQ</a>
-                    <a href="#contact" class="nav-link">Support</a>
-                    <a href="#projects" class="nav-cta">Get Projects</a>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-lemon"></i> Powered by Lemon Squeeze
-                </div>
-                <h1 class="hero-title">Premium Frontend Projects <br>With <span class="floating">Pay What You Want</span></h1>
-                <p class="hero-subtitle">Master frontend development with production-ready projects. Get high-quality source code using HTML, CSS, JavaScript, CSS Grid & Flexbox. Choose your own price!</p>
-                
-                <div class="lemon-highlight">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Secure checkout powered by Lemon Squeeze</span>
+                    <a href="#" class="active">Components</a>
+                    <a href="#">Tutorials</a>
+                    <a href="#">Resources</a>
+                    <!--<a href="#">Community</a>-->
                 </div>
                 
-                <div class="tech-pills">
-                    <div class="tech-pill">
-                        <i class="fab fa-html5"></i> HTML5
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search components..." id="globalSearch">
                     </div>
-                    <div class="tech-pill">
-                        <i class="fab fa-css3-alt"></i> CSS3
-                    </div>
-                    <div class="tech-pill">
-                        <i class="fab fa-js"></i> JavaScript
-                    </div>
-                    <div class="tech-pill">
-                        <i class="fas fa-th-large"></i> CSS Grid
-                    </div>
-                    <div class="tech-pill">
-                        <i class="fas fa-boxes"></i> Flexbox
+                    
+                    <!--<div class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </div>-->
+                    
+                    <div class="user-profile">
+                        <i class="fas fa-user"></i>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- Projects Section -->
-    <section class="products-section" id="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Premium Projects</h2>
-                <p class="section-subtitle">Handcrafted, responsive frontend projects with clean code and modern design patterns. Pay what you want!</p>
-            </div>
-
-            <div class="products-grid" id="products-container">
-                <!-- Products will be dynamically inserted here -->
-            </div>
-
-            <!-- Code Preview -->
-           
-    </section>
-
-    <!-- Lemon Squeeze Integration -->
-    <section class="lemon-integration" id="lemon">
-        <div class="container">
-            <h2>Powered by Lemon Squeeze</h2>
-            <p>All purchases are processed securely through Lemon Squeeze. Choose your own price for each project and get instant access to the source code after checkout.</p>
-            
-            <div class="lemon-features">
-                <div class="lemon-feature">
-                    <i class="fas fa-lock"></i>
-                    <span>Secure Payments</span>
-                </div>
-                <div class="lemon-feature">
-                    <i class="fas fa-bolt"></i>
-                    <span>Instant Delivery</span>
-                </div>
-                <div class="lemon-feature">
-                    <i class="fas fa-hand-holding-usd"></i>
-                    <span>Pay What You Want</span>
-                </div>
-                <div class="lemon-feature">
-                    <i class="fas fa-download"></i>
-                    <span>Direct Downloads</span>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Component Library for Developers</h1>
+                <p>Access hundreds of professionally designed, responsive components with clean HTML, CSS, and JavaScript code. Weekly updates with new components and improvements.</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-gem"></i> Become a Patron
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-eye"></i> View Components
+                    </button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Why These Projects?</h2>
-                <p class="section-subtitle">Designed to accelerate your frontend development skills with real-world examples.</p>
+        <!-- Main Content -->
+        <main class="container">
+            <!-- Filters -->
+            <div class="filters glass">
+                <div class="filter-group">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="all">All Categories</option>
+                        <option value="design">UI Design</option>
+                        <option value="development">Development</option>
+                        <option value="marketing">Marketing</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="tech">Technology</label>
+                    <select id="tech">
+                        <option value="all">All Technologies</option>
+                        <option value="html">HTML/CSS</option>
+                        <option value="js">JavaScript</option>
+                        <option value="react">React</option>
+                        <option value="vue">Vue.js</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="date">Date Added</label>
+                    <select id="date">
+                        <option value="all">All Time</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="search">Search</label>
+                    <input type="text" id="search" placeholder="Component name...">
+                </div>
+
+                <!-- Sort Options -->
+                <div class="sort-options">
+                    <label for="sort">Sort By:</label>
+                    <select id="sort">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="name">Name (A-Z)</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
+            <!-- New Components Section -->
+            <section class="new-components">
+                <div class="section-title">
+                    <h2>New This Week</h2>
+                    <a href="#" class="view-all" id="viewAllNew">
+                        View All <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="components-grid" id="newComponentsGrid">
+
+
+                     <!-- ccomponent 1-->
+                      <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Chart UI-1</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/charts-UIs-1/preview.png" alt="chart UIs">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/charts-UIs-1/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/charts-UIs-1/charts-UIs-1.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="feature-title">Fully Responsive</h3>
-                    <p class="feature-description">Every project is built with a mobile-first approach and tested across all device sizes. Learn modern responsive techniques.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-code"></i>
+                     <!-- component2-->
+                    <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Modern UI-1</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/modern-ui1/preview.png" alt="Estate Components 1">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/modern-ui1/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/modern-ui1/modern-ui1.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="feature-title">Clean & Commented Code</h3>
-                    <p class="feature-description">Well-structured, readable code with detailed comments explaining key concepts and implementation decisions.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="feature-title">Modern CSS Techniques</h3>
-                    <p class="feature-description">Master CSS Grid, Flexbox, custom properties, and modern layout techniques used in professional environments.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials-section" id="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">What Developers Say</h2>
-                <p class="section-subtitle">Join hundreds of developers who've leveled up their frontend skills with our projects.</p>
-            </div>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                    <!-- Component3 -->
+                    <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Estate Components-1</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/estate-components1/preview.png" alt="Estate Components 1">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/estate-components1/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/estate-components1/estate-components.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
                     </div>
-                    <p class="testimonial-text">"The Netflix clone project completely changed how I approach CSS Grid. The code is so clean and well-commented that I learned more from this one project than from months of tutorials."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">AS</div>
-                        <div class="testimonial-info">
-                            <h4>Alex Sterling</h4>
-                            <p>Frontend Developer</p>
+                                     
+                    
+                    
+                    
+                    
+                </div>
+            </section>
+
+            <!-- Popular Components Section -->
+            <section class="popular-components">
+                <div class="section-title">
+                    <h2>Most Popular Components</h2>
+                    <a href="#" class="view-all" id="viewAllPopular">
+                        View All <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="components-grid" id="popularComponentsGrid">
+                 
+                      
+
+                      <!-- ccomponent 1-->
+                      <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Chart UI-1</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/charts-UIs-1/preview.png" alt="chart UIs">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/charts-UIs-1/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/charts-UIs-1/charts-UIs-1.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Component 2 -->
+                     <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Modern UI-1</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/modern-ui1/preview.png" alt="Estate Components 1">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/modern-ui1/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/modern-ui1/modern-ui1.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
+                    </div>
+                 <!-- Component 3 -->
+                    <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Estate Components-1</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/estate-components1/preview.png" alt="Estate Components 1">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/estate-components1/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/estate-components1/estate-components.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!-- Component 4-->
+                    <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Pricing Table 1</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/pricing-table1/preview.png" alt="Pricing Table 1">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/pricing-table1/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/pricing-table1/pricing-table1.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Component 5 -->
+                    <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Community Groups 1</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/community-groups1/preview.png" alt="community-groups1">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/community-groups1/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/community-groups1/community-groups1.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Component 6 -->
+                    <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Pricing Card 1</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/pricing-card1/preview.png" alt="pricing-card1">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/pricing-card1/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/pricing-card1/pricing-card1.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Component 7 -->
+                    <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Nexus Template</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/quantum_nexus/preview.jpg" alt="Quantum Nexus">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/quantum_nexus/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/quantum_nexus/quantum_nexus.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Component 8 -->
+                    <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Interior Template</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/divine-interior/preview.jpg" alt="Divine Interior">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/divine-interior/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/divine-interior/divine-interior.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Component 9 -->
+                    <div class="component-card glass" data-category="design" data-tech="html" data-date="week">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-pie"></i>Visual Template</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                           <img src="components/divine-visual/preview.jpg" alt="Divine Visual">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag new">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/divine-visual/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/divine-visual/divine-visual.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Component 10 -->
+                    <div class="component-card glass" data-category="design" data-tech="html" data-date="month">
+                        <div class="component-header">
+                            <h3><i class="fas fa-columns"></i> Analytics Dashboard</h3>
+                            <span class="component-category design">UI Design</span>
+                        </div>
+                        <div class="component-preview">
+                            <img src="components/analytics-dashboard/preview.jpg" alt="Analytics Dashboard">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/analytics-dashboard/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/analytics-dashboard/analytics-dashboard.zip"> <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Component 11 -->
+                    <div class="component-card glass" data-category="development" data-tech="js" data-date="month">
+                        <div class="component-header">
+                            <h3><i class="fas fa-user-friends"></i> Login Form1</h3>
+                            <span class="component-category development">Development</span>
+                        </div>
+                        <div class="component-preview">
+                            <img src="components/login-form1/preview.jpg" alt="Login Form1">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/login-form1/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn" >
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/login-form1/login-form1.zip">  <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Component 12 -->
+                    <div class="component-card glass" data-category="marketing" data-tech="js" data-date="month">
+                        <div class="component-header">
+                            <h3><i class="fas fa-chart-line"></i> Contact Form</h3>
+                            <span class="component-category marketing">Development</span>
+                        </div>
+                        <div class="component-preview">
+                            <img src="components/contact-form1/preview.jpg" alt="Contact Form 1">
+                        </div>
+                        <div class="component-footer">
+                            <div class="version-tag">v1.0 - New!</div>
+                            <div class="component-actions">
+                                <a href="components/contact-form1/index.html" target="_blank" rel="noopener noreferrer"> <button class="btn-icon preview-btn" >
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                <a href="components/contact-form1/contact-form1.zip">  <button class="btn-icon download-btn" >
+                                    <i class="fas fa-download"></i>
+                                </button></a>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <div class="section-title">
+                    <h2>Library Statistics</h2>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card glass">
+                        <div class="stat-icon design">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>3</h3>
+                            <p>Website Themes</p>
+                        </div>
                     </div>
-                    <p class="testimonial-text">"I was able to land my first frontend job after adding the YouTube clone to my portfolio. The pay-what-you-want model made it accessible, and the quality exceeded my expectations."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">MJ</div>
-                        <div class="testimonial-info">
-                            <h4>Maria Johnson</h4>
-                            <p>Junior Frontend Engineer</p>
+                    
+                    <div class="stat-card glass">
+                        <div class="stat-icon development">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>5</h3>
+                            <p>UI Components</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card glass">
+                        <div class="stat-icon marketing">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1</h3>
+                            <p> Templates</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card glass">
+                        <div class="stat-icon design">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Weekly</h3>
+                            <p>New Components</p>
                         </div>
                     </div>
                 </div>
+            </section>
+        </main>
 
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"As a backend developer transitioning to full-stack, these projects gave me the confidence to build beautiful interfaces. The border animations collection is pure gold!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">DR</div>
-                        <div class="testimonial-info">
-                            <h4>David Rodriguez</h4>
-                            <p>Full-Stack Developer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-     <!-- FAQ Section -->
-    <section class="faq-section" id="faq">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="section-subtitle">Find answers to common questions about our projects and purchasing process.</p>
-            </div>
-
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How does the "Pay What You Want" model work?</h3>
-                        <div class="faq-icon">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>With Lemon Squeeze integration, you can choose any price you want for each project. After clicking "Get via Lemon Squeeze," you'll be redirected to a checkout page where you can set your own price. There's a minimum of $1 to cover processing fees, but you can pay more if you find value in the project.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What's included in each project download?</h3>
-                        <div class="faq-icon">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Each project includes: Complete source code (HTML, CSS, JavaScript), detailed documentation with setup instructions, comments explaining key code sections, assets (images, icons), and a responsive design that works on all devices. Some projects also include bonus features or alternative implementations.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Can I use these projects in my portfolio or for commercial use?</h3>
-                        <div class="faq-icon">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutely! You're encouraged to use these projects in your portfolio to showcase your skills. For commercial use, you have full rights to modify and use the code in your projects. However, you cannot resell or redistribute the original source code as a product.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How do I get access after purchase?</h3>
-                        <div class="faq-icon">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Immediately after completing your purchase through Lemon Squeeze, you'll receive an email with a download link. You'll also have access to a customer portal where you can download the files anytime. The download includes a ZIP file with all project files organized and ready to use.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What if I need help or have issues with a project?</h3>
-                        <div class="faq-icon">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Each project includes detailed documentation to help you get started. If you encounter any issues, you can email support at help@codewithdivine.com. We typically respond within 24 hours and are committed to helping you succeed with our projects.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Do you offer refunds?</h3>
-                        <div class="faq-icon">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Due to the digital nature of our products and the "pay what you want" model, we don't offer refunds. However, if you're unsatisfied with a project for any reason, please contact us and we'll work with you to resolve any issues or provide additional support.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Contact & Support Section -->
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Contact & Support</h2>
-                <p class="section-subtitle">Get help with your purchase or ask questions about our projects.</p>
-            </div>
-
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3 class="contact-title">Email Support</h3>
-                    <p class="contact-details">For any questions, issues with downloads, or technical support, email us at:</p>
-                    <a href="mailto:codewithdivine@gmail.com" class="contact-email">codewithdivine@gmail.com</a>
-                    <div class="response-time">
-                        <i class="fas fa-clock"></i>
-                        <span>24-48 hours response time</span>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3 class="contact-title">Community Support</h3>
-                    <p class="contact-details">Join our community of developers for help, inspiration, and to share your projects:</p>
-                    <div class="social-links" style="justify-content: center; margin-top: 1.5rem;">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Delivery & Refund Section -->
-    <section class="delivery-section" id="delivery">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Delivery & Refund Policy</h2>
-                <p class="section-subtitle">Clear information about what to expect after your purchase.</p>
-            </div>
-
-            <div class="delivery-grid">
-                <div class="delivery-card">
-                    <div class="delivery-header">
-                        <div class="delivery-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <h3 class="delivery-title">Instant Delivery</h3>
-                    </div>
-                    <div class="delivery-content">
-                        <p>Immediately after completing your purchase, you'll receive:</p>
-                        <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--gray);">
-                            <li style="margin-bottom: 0.5rem;">Email with download links for your purchased projects</li>
-                            <li style="margin-bottom: 0.5rem;">Access to your customer portal with all downloads</li>
-                            <li>Detailed setup instructions and documentation</li>
-                        </ul>
-                        <div class="delivery-note">
-                            <p><strong>Note:</strong> If you don't receive your download email within 5 minutes, please check your spam folder or contact support.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="delivery-card">
-                    <div class="delivery-header">
-                        <div class="delivery-icon">
-                            <i class="fas fa-exchange-alt"></i>
-                        </div>
-                        <h3 class="delivery-title">Refund Policy</h3>
-                    </div>
-                    <div class="delivery-content">
-                        <p>Due to the digital nature of our products and the "pay what you want" model, we generally do not offer refunds. However:</p>
-                        <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--gray);">
-                            <li style="margin-bottom: 0.5rem;">If you experience technical issues with downloading or accessing your files, we'll provide support until resolved</li>
-                            <li style="margin-bottom: 0.5rem;">If a project doesn't work as described, we'll fix the issue or provide a working alternative</li>
-                            <li>For exceptional circumstances, contact us and we'll review your case individually</li>
-                        </ul>
-                        <div class="delivery-note">
-                            <p><strong>Guarantee:</strong> We're committed to your satisfaction. If you're unhappy with your purchase for any reason, contact us and we'll work to make it right.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
+        <!-- Updated Footer -->
+        <footer class="footer">
             <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Code with Divine</h3>
-                    <p>Premium frontend projects to elevate your development skills. Learn by building real-world applications.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-codepen"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Projects</h3>
-                    <ul class="footer-links">
-                        <li><a href="#projects">YouTube Clone</a></li>
-                        <li><a href="#projects">Netflix Clone</a></li>
-                        <li><a href="#projects">Project Dashboard</a></li>
-                        <li><a href="#projects">Animated Border Effects</a></li>
-                        <li><a href="#projects">All Projects Bundle</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Tutorials</a></li>
-                        <li><a href="#">CSS Grid Guide</a></li>
-                        <li><a href="#">Flexbox Handbook</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#delivery">Refund Policy</a></li>
-                        <li><a href="#lemon">Lemon Squeeze</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2025 Code with Divine. All rights reserved. Projects sold under the "Pay What You Want" model. Payments processed securely via Lemon Squeeze.</p>
-                <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--gray);">
-                    <i class="fas fa-lock"></i> Security Note: Payments are processed securely by our payment provider (Stripe). Your card details are handled by Stripe and never stored on this site.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Product Detail Modals -->
-    <div class="modal-overlay" id="product-modal-overlay">
-        <!-- Modals will be dynamically inserted here -->
-    </div>
-
-    <script>
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.pageX + 'px';
-            cursor.style.top = e.pageY + 'px';
-        });
-
-        // Add hover effect to interactive elements
-        const interactiveElements = document.querySelectorAll('button, a, .product-card, .feature-card, .testimonial-card, .contact-card, .delivery-card, .lemon-btn, .details-btn, .nav-cta, .tech-pill, .faq-question');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-            });
-        });
-
-        // Product Data with detailed descriptions
-        const products = [
-            {
-                id: 1,
-                name: "Netflix Clone",
-                shortDescription: "A pixel-perfect Netflix clone with responsive grid layout, dynamic content loading, and custom video player.",
-                detailedDescription: "Complete source code for my Netflix Clone tutorial project. This is the exact project from my YouTube tutorial. If the video helped you learn, this source code will help you ship faster and customize for your own portfolio.",
-                features: [
-                    "✅ Clean, organized HTML, CSS & JavaScript files",
-                    "✅ All assets (images, icons, video thumbnails)",
-                    "✅ Fully responsive design - mobile, tablet & desktop",
-                    "✅ Comments explaining key sections",
-                    "✅ Dynamic content loading functionality",
-                    "✅ Modern CSS animations and hover effects",
-                    "✅ File structure optimized for learning"
-                ],
-                whatYouLearn: [
-                    "✅ Building an impressive portfolio piece",
-                    "✅ Learning advanced CSS layouts and positioning",
-                    "✅ Understanding media queries and breakpoints",
-                    "✅ Practicing JavaScript array methods and DOM manipulation",
-                    "✅ Mastering CSS Grid for complex layouts"
-                ],
-                tech: ["HTML5", "CSS3", "JavaScript", "CSS Grid", "Flexbox", "Responsive Design", "Media Queries", "Animations"],
-                lemonUrl: "https://lemonsqueezy.com/checkout/buy/YOUR_NETFLIX_CLONE_ID",
-                icon: "fas fa-film",
-                image: "./assets/images/netflix-clone.webp",
-                difficulty: "Intermediate",
-                note: "Pay what you think it's worth - every amount helps me create more detailed tutorials!"
-            },
-            {
-                id: 2,
-                name: "YouTube Clone - Complete Source Code",
-                shortDescription: "Complete source code for my YouTube Clone tutorial project.",
-                detailedDescription: "Complete source code for my YouTube Clone tutorial project. Get the exact project files from the tutorial to accelerate your learning and customize for your portfolio.",
-                features: [
-                    "✅ Clean, organized HTML, CSS & JavaScript files",
-                    "✅ All assets (images, icons, fonts)",
-                    "✅ Responsive design - works on all devices",
-                    "✅ Comments explaining key sections",
-                    "✅ Ready to customize and deploy",
-                    "✅ File structure optimized for learning"
-                ],
-                whatYouLearn: [
-                    "✅ Building your frontend portfolio",
-                    "✅ Learning modern CSS Grid & Flexbox",
-                    "✅ Understanding responsive design",
-                    "✅ Practicing JavaScript DOM manipulation"
-                ],
-                tech: ["HTML5", "CSS3", "JavaScript", "Flexbox", "CSS Grid", "Responsive Design"],
-                lemonUrl: "https://lemonsqueezy.com/checkout/buy/YOUR_YOUTUBE_CLONE_ID",
-                icon: "fab fa-youtube",
-                image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-                difficulty: "Intermediate",
-                note: "This is the exact project from my YouTube tutorial. If the video helped you learn, this source code will help you ship faster and customize for your own portfolio. Pay what you think it's worth - every amount helps me create more detailed tutorials!"
-            },
-            {
-                id: 3,
-                name: "Project Dashboard",
-                shortDescription: "A comprehensive project management dashboard with charts, task management, and team collaboration features.",
-                detailedDescription: "Complete source code for my Project Dashboard tutorial. This is the exact project from my YouTube tutorial. If the video helped you learn, this source code will help you ship faster and customize for your own portfolio.",
-                features: [
-                    "✅ Clean, organized HTML, CSS & JavaScript files",
-                    "✅ All assets (icons, charts, images)",
-                    "✅ Responsive dashboard layout - works on all devices",
-                    "✅ Comments explaining key sections",
-                    "✅ Interactive UI components and data visualization",
-                    "✅ Modern sidebar navigation with smooth transitions",
-                    "✅ File structure optimized for learning"
-                ],
-                whatYouLearn: [
-                    "✅ Creating professional portfolio projects",
-                    "✅ Learning dashboard design patterns",
-                    "✅ Understanding CSS Grid and Flexbox together",
-                    "✅ Practicing JavaScript for interactive components",
-                    "✅ Building real-world UI layouts",
-                    "✅ Mastering component-based styling"
-                ],
-                tech: ["HTML5", "CSS3", "JavaScript", "CSS Grid", "Chart.js", "UI/UX", "Responsive Design", "Flexbox"],
-                lemonUrl: "https://lemonsqueezy.com/checkout/buy/YOUR_DASHBOARD_ID",
-                icon: "fas fa-chart-line",
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-                difficulty: "Advanced",
-                note: "Pay what you think it's worth - every amount helps me create more detailed tutorials!"
-            },
-            {
-                id: 4,
-                name: "Animated Border Effects",
-                shortDescription: "15+ stunning border animations and hover effects for buttons, cards, and sections.",
-                detailedDescription: "Complete source code for my Animated Border Effects tutorial project. This is the exact project from my YouTube tutorial. If the video helped you learn, this source code will help you ship faster and customize for your own portfolio.",
-                features: [
-                    "✅ Clean, organized HTML, CSS & JavaScript files",
-                    "✅ Multiple border animation variations",
-                    "✅ Responsive design - works on all devices",
-                    "✅ Comments explaining key sections",
-                    "✅ Reusable CSS animation classes",
-                    "✅ Step-by-step implementation examples",
-                    "✅ File structure optimized for learning"
-                ],
-                whatYouLearn: [
-                    "✅ Adding eye-catching effects to your portfolio",
-                    "✅ Learning CSS animations and keyframes",
-                    "✅ Understanding CSS pseudo-elements (::before, ::after)",
-                    "✅ Practicing advanced CSS techniques",
-                    "✅ Creating modern, interactive UI elements",
-                    "✅ Mastering CSS transforms and transitions"
-                ],
-                tech: ["HTML5", "CSS3", "Animations", "Keyframes", "Transitions", "Gradients", "Pseudo-elements"],
-                lemonUrl: "https://lemonsqueezy.com/checkout/buy/YOUR_BORDER_ANIMATIONS_ID",
-                icon: "fas fa-border-style",
-                image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
-                difficulty: "Beginner to Intermediate",
-                note: "Pay what you think it's worth - every amount helps me create more detailed tutorials!"
-            },
-            {
-                id: 5,
-                name: "ALL 4 PROJECTS BUNDLE",
-                shortDescription: "Complete source code for ALL 4 of my tutorial projects - Best Value!",
-                detailedDescription: "Complete source code for ALL 4 of my tutorial projects - Best Value! These are the exact projects from my YouTube tutorials. If the videos helped you learn, this complete bundle will help you ship faster, customize for your portfolio, and demonstrate versatility to potential employers or clients.",
-                features: [
-                    "✅ YouTube Clone - Complete source code",
-                    "✅ Netflix Clone - Complete source code",
-                    "✅ Project Dashboard - Complete source code",
-                    "✅ Animated Border Effects - Complete source code",
-                    "✅ All organized in separate folders",
-                    "✅ Every asset, icon, and image file included",
-                    "✅ Comprehensive comments throughout",
-                    "✅ Ready to customize and deploy"
-                ],
-                whatYouLearn: [
-                    "✅ Building a complete frontend portfolio quickly",
-                    "✅ Learning multiple layout techniques",
-                    "✅ Practicing diverse JavaScript patterns",
-                    "✅ Understanding different CSS methodologies",
-                    "✅ Showcasing range in your developer portfolio",
-                    "✅ Fast-tracking your frontend skills"
-                ],
-                tech: ["HTML5", "CSS3", "JavaScript", "CSS Grid", "Flexbox", "Chart.js", "Animations", "Responsive Design"],
-                lemonUrl: "https://lemonsqueezy.com/checkout/buy/YOUR_BUNDLE_ID",
-                icon: "fas fa-gift",
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-                difficulty: "All Levels",
-                note: "Pay what you think it's worth - every amount helps me create more detailed tutorials!"
-            }
-        ];
-
-        // DOM Elements
-        const productsContainer = document.getElementById('products-container');
-        const modalOverlay = document.getElementById('product-modal-overlay');
-
-        // Initialize product cards
-        function initProducts() {
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.innerHTML = `
-                    <div class="product-header">
-                        <div class="product-icon">
-                            <i class="${product.icon}"></i>
-                        </div>
-                        <h3 class="product-title">${product.name}</h3>
-                        <p class="product-description">${product.shortDescription}</p>
-                    </div>
-                    
-                    <div class="product-image">
-                        <img src="${product.image}" alt="${product.name}" loading="lazy">
-                    </div>
-                    
-                    <div class="product-action">
-                        <div class="pricing-model">
-                            <i class="fas fa-hand-holding-usd"></i>
-                            <span>Pay What You Want</span>
-                        </div>
-                        <div class="btn-group">
-                            <button class="details-btn" data-id="${product.id}">
-                                <i class="fas fa-info-circle"></i>
-                                View Details
-                            </button>
-                            <a href="${product.lemonUrl}" target="_blank" class="lemon-btn">
-                                <i class="fas fa-lemon"></i>
-                                Get Now
-                            </a>
-                        </div>
-                        <div class="security-note">
-                            <i class="fas fa-lock"></i>
-                            <span>Payments processed securely by Stripe. Card details never stored on this site.</span>
-                        </div>
-                    </div>
-                `;
+                <a class="back-to-top" id="backToTop">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
                 
-                productsContainer.appendChild(productCard);
-            });
-            
-            // Add event listeners to details buttons
-            document.querySelectorAll('.details-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const productId = parseInt(this.getAttribute('data-id'));
-                    const product = products.find(p => p.id === productId);
-                    openProductModal(product);
-                });
-            });
-        }
-
-        // Open product detail modal
-        function openProductModal(product) {
-            const modal = document.createElement('div');
-            
-            // Check if it's a special product (YouTube Clone has special modal)
-            if (product.id === 2) {
-                modal.className = 'product-modal';
-                modal.innerHTML = `
-                    <button class="modal-close" id="modal-close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                    <div class="modal-header">
-                        <h2 class="modal-title">${product.name}</h2>
-                        <p class="modal-subtitle">${product.detailedDescription}</p>
-                        <div class="modal-tech">
-                            ${product.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                            <span class="tech-tag" style="background: rgba(236, 72, 153, 0.2); color: var(--accent);">
-                                <i class="fas fa-signal"></i> ${product.difficulty}
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-content">
-                        <div class="modal-section">
-                            <h3><i class="fas fa-check-circle"></i> What You Get</h3>
-                            <div class="modal-features">
-                                ${product.features.map(feature => `
-                                    <div class="modal-feature">
-                                        <i class="fas fa-check" style="color: var(--success);"></i>
-                                        <span>${feature}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                        
-                        <div class="modal-section">
-                            <h3><i class="fas fa-graduation-cap"></i> Perfect For</h3>
-                            <div class="modal-features">
-                                ${product.whatYouLearn.map(learn => `
-                                    <div class="modal-feature">
-                                        <i class="fas fa-check" style="color: var(--success);"></i>
-                                        <span>${learn}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                        
-                        <div class="modal-section">
-                            <h3><i class="fas fa-code"></i> Tech Stack</h3>
-                            <div class="modal-tech">
-                                ${product.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                            </div>
-                        </div>
-                        
-                        <div class="youtube-note">
-                            <p>${product.note}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-action">
-                        <div class="btn-group">
-                            <button class="details-btn" id="close-modal-btn">
-                                <i class="fas fa-times"></i>
-                                Close
-                            </button>
-                            <a href="${product.lemonUrl}" target="_blank" class="lemon-btn">
-                                <i class="fas fa-lemon"></i>
-                                Get via Lemon Squeeze
-                            </a>
-                        </div>
-                        <div class="security-note">
-                            <i class="fas fa-lock"></i>
-                            <span>Payments are processed securely by our payment provider (Stripe). Your card details are handled by Stripe and never stored on this site.</span>
-                        </div>
-                    </div>
-                `;
-            } else {
-                // Standard modal for other products
-                modal.className = 'product-modal';
-                modal.innerHTML = `
-                    <button class="modal-close" id="modal-close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                    <div class="modal-header">
-                        <h2 class="modal-title">${product.name}</h2>
-                        <p class="modal-subtitle">${product.detailedDescription}</p>
-                        <div class="modal-tech">
-                            ${product.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                            <span class="tech-tag" style="background: rgba(236, 72, 153, 0.2); color: var(--accent);">
-                                <i class="fas fa-signal"></i> ${product.difficulty}
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-content">
-                        <div class="modal-section">
-                            <h3><i class="fas fa-star"></i> What You Get</h3>
-                            <div class="modal-features">
-                                ${product.features.map(feature => `
-                                    <div class="modal-feature">
-                                        <i class="fas fa-check"></i>
-                                        <span>${feature}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                        
-                        <div class="modal-section">
-                            <h3><i class="fas fa-graduation-cap"></i> Perfect For</h3>
-                            <div class="modal-features">
-                                ${product.whatYouLearn.map(learn => `
-                                    <div class="modal-feature">
-                                        <i class="fas fa-lightbulb"></i>
-                                        <span>${learn}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                        
-                        <div class="modal-section">
-                            <h3><i class="fas fa-code"></i> Tech Stack</h3>
-                            <div class="modal-tech">
-                                ${product.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                            </div>
-                        </div>
-                        
-                        ${product.note ? `
-                        <div class="youtube-note">
-                            <p>${product.note}</p>
-                        </div>
-                        ` : ''}
-                    </div>
-                    
-                    <div class="modal-action">
-                        <div class="btn-group">
-                            <button class="details-btn" id="close-modal-btn">
-                                <i class="fas fa-times"></i>
-                                Close
-                            </button>
-                            <a href="${product.lemonUrl}" target="_blank" class="lemon-btn">
-                                <i class="fas fa-lemon"></i>
-                                Get via Lemon Squeeze
-                            </a>
-                        </div>
-                        <div class="security-note">
-                            <i class="fas fa-lock"></i>
-                            <span>Payments are processed securely by our payment provider (Stripe). Your card details are handled by Stripe and never stored on this site.</span>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            // Clear modal overlay and add new modal
-            modalOverlay.innerHTML = '';
-            modalOverlay.appendChild(modal);
-            
-            // Show modal
-            modalOverlay.classList.add('active');
-            
-            // Add event listeners for modal close
-            document.getElementById('modal-close').addEventListener('click', closeModal);
-            document.getElementById('close-modal-btn').addEventListener('click', closeModal);
-            
-            // Close modal when clicking outside
-            modalOverlay.addEventListener('click', function(e) {
-                if (e.target === modalOverlay) {
-                    closeModal();
-                }
-            });
-            
-            // Prevent modal close when clicking inside modal
-            modal.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-        }
-
-        // Close modal function
-        function closeModal() {
-            modalOverlay.classList.remove('active');
-        }
-
-        // FAQ Accordion Functionality
-        function initFAQ() {
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            
-            faqQuestions.forEach(question => {
-                question.addEventListener('click', () => {
-                    const faqItem = question.parentElement;
-                    const answer = faqItem.querySelector('.faq-answer');
-                    
-                    // Toggle active class on FAQ item
-                    faqItem.classList.toggle('active');
-                    
-                    // Toggle active class on answer
-                    answer.classList.toggle('active');
-                    
-                    // Close other FAQ items
-                    faqQuestions.forEach(otherQuestion => {
-                        if (otherQuestion !== question) {
-                            const otherItem = otherQuestion.parentElement;
-                            const otherAnswer = otherItem.querySelector('.faq-answer');
-                            otherItem.classList.remove('active');
-                            otherAnswer.classList.remove('active');
-                        }
-                    });
-                });
-            });
-        }
-
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', () => {
-            initProducts();
-            initFAQ();
-            
-            // Add subtle entrance animations to elements
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe product cards
-            document.querySelectorAll('.product-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
-            
-            // Observe feature cards
-            document.querySelectorAll('.feature-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
-            
-            // Observe testimonial cards
-            document.querySelectorAll('.testimonial-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
-            
-            // Observe FAQ items
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(item);
-            });
-            
-            // Observe contact cards
-            document.querySelectorAll('.contact-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
-            
-            // Observe delivery cards
-            document.querySelectorAll('.delivery-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-
-        // Add Lemon Squeeze purchase tracking
-        function trackLemonPurchase(productName) {
-            console.log(`Purchase initiated for: ${productName}`);
-            
-            // Example analytics tracking
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'purchase_click', {
-                    'event_category': 'Lemon Squeeze',
-                    'event_label': productName
-                });
-            }
-        }
-
-        // Add event listeners to Lemon Squeeze buttons for tracking
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.lemon-btn')) {
-                const productName = e.target.closest('.product-modal') 
-                    ? e.target.closest('.product-modal').querySelector('.modal-title').textContent
-                    : e.target.closest('.product-card').querySelector('.product-title').textContent;
-                trackLemonPurchase(productName);
-            }
-        });
-    </script>
+                <div class="footer-logo">
+                    <i class="fas fa-code"></i>
+                    <h2>CodeWithDivine</h2>
+                </div>
+                
+                <p class="footer-tagline">
+                    Creating beautiful, functional components for developers and designers. 
+                    Join our community and elevate your projects with premium UI elements.
+                </p>
+                
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" aria-label="Discord">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="#" aria-label="Patreon">
+                        <i class="fab fa-patreon"></i>
+                    </a>
+                </div>
+                
+               <!-- <div class="footer-divider"></div>
+                
+                <div class="footer-links">
+                    <a href="#">Components</a>
+                    <a href="#">Tutorials</a>
+                    <a href="#">Resources</a>
+                    <a href="#">Community</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">License</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>-->
+                
+                <div class="copyright">
+                    <p>&copy; 2025 CodeWithDivine Component Library. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+<script type="text/javascript" src="assets/js/scripts.js"></script>
+   
 </body>
 </html>
