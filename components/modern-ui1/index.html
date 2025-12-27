@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern UI Dashboard 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+</head>
+<body>
+
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-palette"></i> Theme
+    </button>
+
+    <div class="dashboard-grid">
+
+        <!-- Card 1: Activity Graph -->
+        <div class="card" style="grid-row: span 1;">
+            <div class="flex-between">
+                <h3>Activity</h3>
+                <button class="icon-btn"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+            <div class="flex-center" style="margin-top:10px;">
+                <h2 style="font-size: 32px;">355 <span style="font-size:14px; color:var(--text-muted); font-weight:400;">likes</span></h2>
+                <span style="color:var(--success); font-size:12px; font-weight:600;"><i class="fas fa-caret-up"></i> 10%</span>
+            </div>
+            <p class="sub-text">This week</p>
+
+            <div class="chart-container">
+                <div class="chart-tooltip">85 likes</div>
+                <svg class="chart-svg" viewBox="0 0 300 100" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:var(--primary); stop-opacity:0.3" />
+                            <stop offset="100%" style="stop-color:var(--primary); stop-opacity:0" />
+                        </linearGradient>
+                    </defs>
+                    <path class="chart-path" d="M0,80 C50,80 50,40 100,60 C150,80 150,20 200,40 C250,60 250,90 300,50 L300,100 L0,100 Z" />
+                </svg>
+            </div>
+            <div class="flex-between" style="margin-top:10px; font-size:10px; color:var(--text-muted);">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+        </div>
+
+        <!-- Card 2: Users to follow -->
+        <div class="card">
+            <div class="flex-between" style="margin-bottom:15px;">
+                <h3>Users to follow</h3>
+                <button class="icon-btn"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="user-row flex-between">
+                <div class="flex-center">
+                    <img src="assets/images/2.jpg" alt="User" class="avatar">
+                    <div class="user-info">
+                        <h4>Joanna Grey</h4>
+                        <span>@jogrey</span>
+                    </div>
+                </div>
+                <button class="btn-small add" onclick="toggleFollow(this)">Follow</button>
+            </div>
+
+            <div class="user-row flex-between">
+                <div class="flex-center">
+                    <img src="assets/images/3.jpg" alt="User" class="avatar">
+                    <div class="user-info">
+                        <h4>Michael T.</h4>
+                        <span>@mtd</span>
+                    </div>
+                </div>
+                <button class="btn-small add" onclick="toggleFollow(this)">Follow</button>
+            </div>
+
+            <div class="user-row flex-between">
+                <div class="flex-center">
+                    <img src="assets/images/4.jpg" alt="User" class="avatar">
+                    <div class="user-info">
+                        <h4>Mark Corrigan</h4>
+                        <span>@baddestMC</span>
+                    </div>
+                </div>
+                <button class="btn-small add" onclick="toggleFollow(this)">Follow</button>
+            </div>
+        </div>
+
+        <!-- Card 3: Activity Feed -->
+        <div class="card" style="grid-row: span 2;">
+            <div class="flex-between">
+                <h3>Activity feed</h3>
+                <span class="sub-text" style="color:var(--primary); cursor:pointer;">Filter</span>
+            </div>
+            
+            <div style="margin-top: 15px; border-bottom: 1px solid var(--border); padding-bottom: 15px;">
+                <div class="flex-between">
+                    <div class="flex-center">
+                        <img src="assets/images/6.jpg" class="avatar">
+                        <div class="user-info">
+                            <h4>Joanna Grey</h4>
+                            <span>5m ago</span>
+                        </div>
+                    </div>
+                    <button class="icon-btn"><i class="fas fa-caret-down"></i></button>
+                </div>
+                <p style="margin-top:10px; color:var(--text-main);">Some pics from today! :)</p>
+                
+                <div class="feed-images">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&h=200&q=80" class="feed-img-1 feed-img-item" alt="Mountain landscape">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=150&h=100&q=80" class="feed-img-item" alt="Lake view">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=150&h=100&q=80" class="feed-img-item" alt="Forest path">
+                </div>
+
+                <div class="flex-center" style="font-size:12px; color:var(--text-muted); gap: 15px;">
+                    <span><i class="fas fa-heart"></i> 150 likes</span>
+                    <span><i class="fas fa-comment"></i> 50 comments</span>
+                    <span><i class="fas fa-share"></i> 5 shares</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: Filter -->
+        <div class="card">
+            <div class="flex-between">
+                <h3>Filter</h3>
+                <button class="icon-btn"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="filter-group">
+                <div class="flex-between">
+                    <h4>Price</h4>
+                    <span class="sub-text" id="priceVal">£100-250</span>
+                </div>
+                <input type="range" class="range-slider" min="0" max="500" value="250" oninput="updatePrice(this.value)">
+            </div>
+
+            <div class="filter-group">
+                <div class="flex-between">
+                    <h4>Distance</h4>
+                    <span class="sub-text">10km</span>
+                </div>
+                <input type="range" class="range-slider" min="0" max="50">
+            </div>
+
+            <div class="tag-group">
+                <button class="tag active">Hotel suite</button>
+                <button class="tag">Airbnb</button>
+                <button class="tag">Hostel</button>
+            </div>
+
+            <button class="btn-primary">Apply filters</button>
+        </div>
+
+        <!-- Card 5: Profile Card -->
+        <div class="card">
+            <div class="flex-between">
+                <div class="flex-center">
+                    <img src="assets/images/3.jpg" class="avatar" style="width:50px; height:50px;">
+                    <div>
+                        <h3>Mark Thomas</h3>
+                        <p class="sub-text">Product Designer</p>
+                    </div>
+                </div>
+                <button class="icon-btn"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+            <p style="margin-top:15px; margin-bottom: 20px;">Great to be part of this! Thanks to <span style="color:var(--primary)">@jmathews</span> for introducing me to the world of UXPin :)</p>
+            <div class="flex-between" style="color:var(--text-muted);">
+                <div class="flex-center">
+                    <span><i class="fas fa-thumbs-up"></i> 50</span>
+                    <span><i class="fas fa-comment"></i> 10</span>
+                </div>
+                <span><i class="fas fa-share"></i></span>
+            </div>
+        </div>
+
+        <!-- Card 6: Search -->
+        <div class="card" style="padding: 15px;">
+            <div class="flex-between" style="margin-bottom:10px;">
+                <h3>Search</h3>
+                <button class="icon-btn"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Find something...">
+            </div>
+        </div>
+
+        <!-- Card 7: Trending -->
+        <div class="card">
+            <div class="flex-between" style="margin-bottom:15px;">
+                <h3>Trending</h3>
+                <span class="sub-text" style="color:var(--primary)">Filter</span>
+            </div>
+
+            <div class="trending-item">
+                <img src="https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=60&h=60&q=80" class="trending-thumb" alt="Flooding">
+                <div class="trending-content">
+                    <p class="sub-text">Trending in UK</p>
+                    <h4>Flooding in Yorkshire</h4>
+                </div>
+                <a href="#" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="trending-item">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=60&h=60&q=80" class="trending-thumb" alt="Robot">
+                <div class="trending-content">
+                    <p class="sub-text">Trending in Tech</p>
+                    <h4>Robot Takeover Event</h4>
+                </div>
+                <a href="#" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Card 8: Post Input -->
+        <div class="card">
+            <div class="flex-between" style="margin-bottom: 15px;">
+                <h3>Post</h3>
+                <span class="sub-text" style="color:var(--primary)">Filter</span>
+            </div>
+            <div class="flex-center" style="align-items: flex-start;">
+                <img src="assets/images/6.jpg" class="avatar">
+                <textarea style="width:100%; border:none; background:transparent; resize:none; font-family:inherit; outline:none;" rows="2" placeholder="Thoughts for the day?"></textarea>
+            </div>
+            <div class="flex-between" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top:15px;">
+                <div class="flex-center" style="color:var(--primary); font-size: 14px; gap: 15px;">
+                    <span><i class="fas fa-camera"></i> Photo</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Check-in</span>
+                    <span><i class="fas fa-calendar-alt"></i> Event</span>
+                </div>
+            </div>
+            <button class="btn-primary" style="margin-top:10px; background:#F2F4F8; color: var(--text-main);">Manage your posts</button>
+        </div>
+
+        <!-- Card 9: Messages -->
+        <div class="card">
+            <div class="flex-between" style="margin-bottom: 10px;">
+                <h3>Messages</h3>
+                <span class="sub-text" style="color:var(--primary)">Filter</span>
+            </div>
+
+            <div class="msg-item flex-between">
+                <div class="flex-center">
+                    <img src="assets/images/3.jpg" class="avatar">
+                    <div>
+                        <h4>Joanna Grey</h4>
+                        <p class="sub-text">Hey there! Could...</p>
+                    </div>
+                </div>
+                <div style="text-align:right;">
+                    <span class="badge">1</span>
+                    <p class="sub-text">10m ago</p>
+                </div>
+            </div>
+
+            <div class="msg-item flex-between">
+                <div class="flex-center">
+                    <img src="assets/images/8.jpg" class="avatar">
+                    <div>
+                        <h4>Michael T.</h4>
+                        <p class="sub-text">Yo! I'm off next...</p>
+                    </div>
+                </div>
+                <p class="sub-text">1hr ago</p>
+            </div>
+        </div>
+
+        <!-- Card 10: Upload File -->
+        <div class="card">
+            <div class="flex-between">
+                <h3>Upload file</h3>
+                <button class="icon-btn"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="file-item">
+                <div style="width:30px; height:30px; background:#F9F5FF; border-radius:4px; display:flex; align-items:center; justify-content:center;"><i class="fas fa-file" style="color: var(--primary);"></i></div>
+                <div>
+                    <h4 style="font-size:13px;">holiday-snaps</h4>
+                    <span class="sub-text">50mb</span>
+                </div>
+                <button class="icon-btn" style="margin-left:auto;"><i class="fas fa-download"></i></button>
+            </div>
+
+            <div class="upload-area" id="dropZone">
+                <p><i class="fas fa-cloud-upload-alt" style="font-size: 24px; margin-bottom: 8px; color: var(--text-muted);"></i><br>Drag a file here<br><span class="sub-text">or Browse</span></p>
+            </div>
+        </div>
+
+        <!-- Card 11: Incoming Call -->
+        <div class="card call-card">
+            <h3>Incoming call</h3>
+            <div style="margin: 20px 0;">
+                <img src="assets/images/3.jpg" class="avatar call-avatar">
+                <h3>Mark Thomas</h3>
+                <p class="sub-text">Work</p>
+            </div>
+            <div class="call-actions">
+                <button class="call-btn btn-decline"><i class="fas fa-times"></i></button>
+                <button class="call-btn btn-accept"><i class="fas fa-phone"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="assets/js/script.js"></script>
+</body>
+</html>
